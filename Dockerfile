@@ -1,3 +1,5 @@
+# Dockerhub: https://hub.docker.com/repository/docker/srfilipemaia/lightweight-docker-server.v01.challenge.go/general
+
 FROM golang:1.21.5-alpine as builder
 
 WORKDIR /home/go
@@ -18,7 +20,6 @@ FROM scratch
 ENV APP_HOME /home/go
 WORKDIR "$APP_HOME"
 
-COPY --from=builder "$APP_HOME"/.env $APP_HOME
 COPY --from=builder "$APP_HOME"/cmd/web/server $APP_HOME
 
 COPY --from=builder /etc/ssl/certs/ca-certificates.crt /etc/ssl/certs/
